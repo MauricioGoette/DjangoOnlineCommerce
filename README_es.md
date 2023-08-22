@@ -16,41 +16,61 @@ Para poner en marcha este proyecto, sigue estos pasos:
 
 1. Instala Python 3 y pip:
 
-   sudo apt install python3-pip
+```
+sudo apt install python3-pip
+```
 
 2. Crea un entorno virtual para el proyecto:
 
-   pip install virtualenv
+```
+pip install virtualenv
+```
 
 3. Clona o descarga este repositorio y ábrelo en tu editor.
 
 4. En una terminal, ejecuta el siguiente comando en el directorio base del proyecto para crear el entorno virtual:
 
-   virtualenv nombredelentorno
+```
+virtualenv venvname
+```
 
-5. Activa el entorno virtual (en Mac/Linux):
+5. Activar/Desactivar el entorno virtual (en Mac/Linux):
 
-   source nombredelentorno/bin/activate
+```
+source env/bin/active
+
+deactivate
+```
 
 6. Instala las dependencias del proyecto:
 
-   pip install -r requirements.txt
-   pip install psycopg2-binary
-   pip install Pillow
+```
+pip install -r requirements.txt
+python3 -m pip install -r requirements.txt 
+
+pip install psycopg2-binary
+pip install Pillow
+```
 
 7. Ejecuta el proyecto:
 
-   python manage.py runserver
+  ```
+python manage.py runserver
+
+python3 manage.py runserver 192.168.0.111:8000
+```
 
 8. Para crear un superusuario:
 
-   python manage.py createsuperuser
+   ```
+python manage.py createsuperuser
+```
 
 9. Para realizar migraciones:
-
+```
    python manage.py makemigrations nombredelaaplicacion
    python manage.py migrate
-
+```
 10. En caso de necesitar restablecer migraciones:
 
     Eliminar la carpeta de migración y la tabla en la base de datos
