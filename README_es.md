@@ -2,19 +2,15 @@ Django E-commerce
 
 Este es un sitio web de comercio electrónico muy simple construido con Django.
 
-Quick demo
-
-[Enlace a la demo](https://youtu.be/z4USlooVXG0)
-
 ---
 
-Project Summary
+Resumen del proyecto
 
 El sitio web muestra productos. Los usuarios pueden agregar y quitar productos de su carrito, al mismo tiempo que especifican la cantidad de cada artículo. Luego pueden ingresar su dirección y elegir Stripe para manejar el procesamiento de pagos.
 
 ---
 
-Running this project
+Ejecutar el Proyecto
 
 Para poner en marcha este proyecto, sigue estos pasos:
 
