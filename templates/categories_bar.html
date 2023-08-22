@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: "Lato", sans-serif;
+    }
+
+    .sidebar {
+      height: 98%;
+      width: 0;
+      position: fixed;
+      z-index: 1;
+      top: 10%;
+      left: 0;
+      background-color: #111;
+      overflow-x: hidden;
+      transition: 0.5s;
+      padding-top: 60px;
+    }
+
+    .sidebar a {
+      padding: 8px 8px 8px 32px;
+      text-decoration: none;
+      font-size: 25px;
+      color: #ccc3c3;
+      display: block;
+      transition: 0.3s;
+    }
+
+    .sidebar a:hover {
+      color: #2629e2;
+    }
+
+    .sidebar .closebtn {
+      position: absolute;
+      top: 1%;
+      right: 25px;
+      font-size: 36px;
+      margin-left: 50px;
+    }
+
+    .openbtn {
+      font-size: 20px;
+      cursor: pointer;
+      background-color: #111;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      position: fixed;
+      z-index: 1;
+    }
+
+    .openbtn:hover {
+      background-color: #444;
+    }
+
+    #main {
+      transition: margin-left .5s;
+      padding: 16px;
+      padding-top: 100px;
+    }
+
+    .md-form {
+      margin-left: 50px;
+      /* Add left margin to move it to the right */
+    }
+
+    /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+    @media screen and (max-height: 450px) {
+      .sidebar {
+        padding-top: 15px;
+      }
+
+      .sidebar a {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="mySidebar" class="sidebar">
+
+    <!-- Search bar -->
+    <form class="form-inline" action="{% url 'core:search' %}" method="get">
+      {% csrf_token %}
+      <div class="md-form my-0">
+        <input class="form-control mr-sm-2" type="text" placeholder="Busqueda" aria-label="Search" name="q">
+        <input type="submit" name="search">
+      </div>
+    </form>
+
+    <a class="nav-link" href="/">Todo</a>
+    {% for category in categories %}
+    <a href="/categories/{{ category.category }}">{{ category.category }}</a>
+    {% endfor %}
+  </div>
+
+  <div id="main">
+    <button class="openbtn" onclick="toogleNav()">☰ Categorias</button>
+  </div>
+
+  <script>
+
+    function toogleNav() {
+      var element = document.getElementById("mySidebar");
+      if (element.style.width == "400px") {
+        element.style.width = "0px";
+      } else {
+        element.style.width = "400px";
+      }
+      var element = document.getElementById("main");
+      if (element.style.marginLeft == "400px") {
+        element.style.marginLeft = "0px";
+      } else {
+        element.style.marginLeft = "400px";
+      }
+    }
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style type="text/css">
+    .blue-text {
+      font-size: 24px;
+      /* Adjust the size as needed */
+      color: blue;
+      /* Adjust the color as needed */
+      font-weight: bold;
+      /* Make the text bold */
+    }
+  </style>
+</head>
+
+
+{% load cart_template_tags %}
+{% load account %}
+{% load static %}
+
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar" style="padding-top: 20px;">
+  <div class="container">
+
+    <!-- Brand -->
+    <a class="navbar-brand waves-effect" href="/">
+      <img src="{% static '/img/logo.PNG' %}" style="height:auto;width:50px;">
+      <strong class="blue-text">On Servicios Informaticos</strong>
+    </a>
+
+    <!-- Collapse -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Links -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+      <!-- Left -->
+      <ul class="navbar-nav mr-auto">
+        {% comment %} <li class="nav-item active">
+          <a class="nav-link waves-effect" href="/">Inicio
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link waves-effect" href="/checkout">
+            Pago</a>
+        </li> {% endcomment %}
+      </ul>
+
+      <!-- Right -->
+      <ul class="navbar-nav nav-flex-icons">
+        {% if request.user.is_authenticated %}
+
+        <li class="nav-item">
+          <a class="nav-link waves-effect" href="">
+            <span class="clearfix d-sm-inline-block">Usuario: </span>
+            <strong class="blue-text"> {% user_display user %}</strong>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a href="{% url 'core:order-summary' %}" class="nav-link waves-effect">
+            <span class="clearfix d-sm-inline-block"> Carrito </span>
+            <i class="fas fa-shopping-cart"></i>
+            <span class="badge red z-depth-1 mr-1"> {{ request.user|cart_item_count }} </span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link waves-effect" href="{% url 'account_logout' %}">
+            <span class="clearfix d-sm-inline-block"> Salir </span>
+          </a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link waves-effect" href="{% url 'account_login' %}">
+            <span class="clearfix d-sm-inline-block"> Iniciar Sesion </span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link waves-effect" href="{% url 'account_signup' %}">
+            <span class="clearfix d-sm-inline-block"> Registrarse </span>
+          </a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+
+  </div>
+
+
+
+</nav>

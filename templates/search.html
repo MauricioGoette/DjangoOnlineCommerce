@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main>
+  <div class="container">
+
+
+    <!--/.Navbar-->
+
+    <!--Section: Products v.3-->
+    <section class="text-center mb-4">
+
+      <div class="row wow fadeIn">
+
+        {% for item in object_list %}
+        <div class="col-lg-3 col-md-6 mb-4">
+
+          <div class="card h-100">
+
+            <div class="container d-flex h-100" style="align-items:center;justify-content:center;">
+              <img src="{{ item.image_url }}" class="card-img-top" style="height:auto;width:200px;overflow:hidden;">
+              <a href="{{ item.get_absolute_url }}">
+                <div class="mask rgba-white-slight"></div>
+              </a>
+            </div>
+
+            <div class="card-body text-center">
+              <a href="" class="grey-text">
+                <h5>{{ item.get_category_display }}</h5>
+              </a>
+              <h5>
+                <strong>
+                  <a href="{{ item.get_absolute_url }}" class="dark-grey-text">{{ item.title }}
+                    <!-- <span class="badge badge-pill {{ item.get_label_display }}-color">Nuevo</span> -->
+                  </a>
+                </strong>
+              </h5>
+
+              <h4 class="font-weight-bold blue-text">
+                <strong>$
+                  {% if item.discount_price %}
+                  {{ item.discount_price }}
+                  {% else %}
+                  {{ item.price|floatformat:2 }}
+                  {% endif %}
+                </strong>
+              </h4>
+
+            </div>
+
+          </div>
+
+        </div>
+        {% endfor %}
+      </div>
+
+    </section>
+    <!--Section: Products v.3-->
+
+    <!--Pagination-->
+
+    {% if is_paginated %}
+    <nav class="d-flex justify-content-center wow fadeIn">
+      <ul class="pagination pg-blue">
+
+        {% if page_obj.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+            <span class="sr-only">Anterior</span>
+          </a>
+        </li>
+        {% endif %}
+
+        <li class="page-item active">
+          <a class="page-link" href="?page={{ page_obj.number }}">{{ page_obj.number }}
+            <span class="sr-only">(Actual)</span>
+          </a>
+        </li>
+
+        {% if page_obj.has_next %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+            <span class="sr-only">Siguiente</span>
+          </a>
+        </li>
+        {% endif %}
+      </ul>
+    </nav>
+    {% endif %}
+
+  </div>
+</main>
+
+{% endblock content %}
