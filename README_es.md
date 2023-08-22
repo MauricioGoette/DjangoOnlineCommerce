@@ -62,7 +62,7 @@ python3 manage.py runserver 192.168.0.111:8000
 
 8. Para crear un superusuario:
 
-   ```
+```
 python manage.py createsuperuser
 ```
 
